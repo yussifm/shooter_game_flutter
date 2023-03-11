@@ -5,6 +5,8 @@ import 'package:flame/components.dart';
 import 'package:shooter_game_flutter/game/components/bullet_component.dart';
 import 'package:shooter_game_flutter/game/game.dart';
 
+import 'explosive_component.dart';
+
 class EnemyComponent extends SpriteComponent
     with HasGameRef<ShooterGame>, CollisionCallbacks {
   static const speed = 150;
@@ -36,6 +38,8 @@ class EnemyComponent extends SpriteComponent
 
   void takeHit() {
     removeFromParent();
+
+    gameRef.add(ExplosionComponent(position: position));
     gameRef.increaseScore();
   }
   

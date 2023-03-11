@@ -6,6 +6,7 @@ import 'package:shooter_game_flutter/game/game.dart';
 
 import 'bullet_component.dart';
 import 'enemy_component.dart';
+import 'explosive_component.dart';
 
 class PlayerComponent extends SpriteComponent
     with HasGameRef<ShooterGame>, CollisionCallbacks {
@@ -55,7 +56,9 @@ class PlayerComponent extends SpriteComponent
     bulletCreator.timer.pause();
   }
 
-  void takeHit() {}
+  void takeHit() {
+    gameRef.add(ExplosionComponent(position: position));
+  }
 
   @override
   void onCollisionStart(
