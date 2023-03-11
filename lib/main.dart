@@ -38,7 +38,20 @@ class _GamePageState extends State<GamePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GameWidget(game: _game,)
+        body: GameWidget(
+      game: _game,
+      loadingBuilder: (_) => Center(
+        child: Column(
+          children: const [
+            CircularProgressIndicator.adaptive(),
+            SizedBox(
+              height: 20,
+            ),
+            Text('Loading'),
+          ],
+        ),
+      ),
+    )
     );
   }
 
