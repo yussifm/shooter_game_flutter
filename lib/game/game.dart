@@ -5,9 +5,6 @@ import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:shooter_game_flutter/game/components/background_component.dart';
-import 'package:shooter_game_flutter/game/components/bullet_component.dart';
-import 'package:shooter_game_flutter/game/components/enemy_bullet_component.dart';
-import 'package:shooter_game_flutter/game/components/enemy_component.dart';
 import 'package:shooter_game_flutter/game/components/player_component.dart';
 
 import 'components/create_enemy_component.dart';
