@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:flutter/foundation.dart';
 import 'package:shooter_game_flutter/game/game.dart';
 
 import 'bullet_component.dart';
@@ -17,7 +18,9 @@ class PlayerComponent extends SpriteComponent
           size: Vector2(50, 75),
           position: Vector2(100, 500),
           anchor: Anchor.center,
-        );
+        ) {
+    kReleaseMode ? debugMode = false : debugMode = true;
+  }
 
   @override
   FutureOr<void> onLoad() async {

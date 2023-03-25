@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:flutter/foundation.dart';
 import 'package:shooter_game_flutter/game/components/bullet_component.dart';
 import 'package:shooter_game_flutter/game/game.dart';
 
@@ -13,7 +14,9 @@ class EnemyComponent extends SpriteComponent
   static Vector2 initialSize = Vector2.all(25);
 
   EnemyComponent({required super.position})
-      : super(size: initialSize, anchor: Anchor.center);
+      : super(size: initialSize, anchor: Anchor.center) {
+    kReleaseMode ? debugMode = false : debugMode = true;
+  }
 
       
   @override

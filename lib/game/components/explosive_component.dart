@@ -1,4 +1,5 @@
 import 'package:flame/components.dart';
+import 'package:flutter/foundation.dart';
 
 class ExplosionComponent extends SpriteAnimationComponent with HasGameRef {
   ExplosionComponent({super.position})
@@ -6,7 +7,9 @@ class ExplosionComponent extends SpriteAnimationComponent with HasGameRef {
           size: Vector2.all(50),
           anchor: Anchor.center,
           removeOnFinish: true,
-        );
+        ) {
+    kReleaseMode ? debugMode = false : debugMode = true;
+  }
 
   @override
   Future<void> onLoad() async {

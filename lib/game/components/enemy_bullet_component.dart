@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flame/components.dart';
 
 class EnemyBulletComponent extends SpriteComponent with HasGameRef {
+  
   @override
   FutureOr<void> onLoad() async {
     sprite = await Sprite.load("opponent-bullet.png");

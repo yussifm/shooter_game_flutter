@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:flutter/foundation.dart';
 import 'package:shooter_game_flutter/game/components/enemy_component.dart';
 
 class BulletComponent extends SpriteComponent
@@ -11,7 +12,9 @@ class BulletComponent extends SpriteComponent
   final Vector2 deltaPosition = Vector2.zero();
 
   BulletComponent({required super.position, super.angle})
-      : super(size: Vector2(10, 20));
+      : super(size: Vector2(10, 20)) {
+    kReleaseMode ? debugMode = false : debugMode = true;
+  }
 
   @override
   FutureOr<void> onLoad() async {
