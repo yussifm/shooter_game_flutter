@@ -1,10 +1,26 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shooter_game_flutter/game/bloc/Game/game_bloc.dart';
+import 'package:shooter_game_flutter/game/bloc/score/score_bloc.dart';
 import 'package:shooter_game_flutter/game/game.dart';
 import 'package:shooter_game_flutter/screens/menu_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(
+    MultiBlocProvider(
+      providers: [
+        BlocProvider<ScoreBloc>(
+          create: (context) => ScoreBloc(),
+        ),
+        BlocProvider<GameBloc>(
+          create: (context) => GameBloc(),
+        ),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

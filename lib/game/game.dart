@@ -3,16 +3,25 @@ import 'dart:async';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
+import 'package:flame/input.dart';
 import 'package:flame_audio/flame_audio.dart';
+import 'package:flame_bloc/flame_bloc.dart';
+import 'package:shooter_game_flutter/game/bloc/Game/game_bloc.dart';
+import 'package:shooter_game_flutter/game/bloc/Game/game_state.dart';
+import 'package:shooter_game_flutter/game/bloc/score/score_bloc.dart';
+import 'package:shooter_game_flutter/game/bloc/score/score_event.dart';
 import 'package:shooter_game_flutter/game/components/background_component.dart';
 import 'package:shooter_game_flutter/game/components/player_component.dart';
 
+import 'bloc/Game/game_event.dart';
 import 'components/create_enemy_component.dart';
 
 class ShooterGame extends FlameGame with PanDetector, HasCollisionDetection {
   late final PlayerComponent player;
   late final TextComponent componentCounter;
   late final TextComponent scoreText;
+  final ScoreBloc scoreBloc = ScoreBloc();
+  final GameBloc gameBloc = GameBloc();
 
   int score = 0;
 
@@ -36,10 +45,17 @@ class ShooterGame extends FlameGame with PanDetector, HasCollisionDetection {
         anchor: Anchor.bottomRight,
         priority: 1,
       ),
+      // ButtonComponent(
+      //   onPressed: () {
+      //     gameBloc.add(StopEvent());
+      //   },
+      // ),
     ]);
 
     add(EnemyCreator());
     add(player = PlayerComponent());
+    add(FlameBlocProvider.value(value: scoreBloc));
+    add(FlameBlocProvider.value(value: gameBloc));
 
     FlameAudio.loop("space-wind.mp3", volume: 0.4);
     FlameAudio.loopLongAudio("fallingStar.mp3", volume: 0.6);
@@ -77,5 +93,6 @@ class ShooterGame extends FlameGame with PanDetector, HasCollisionDetection {
 
   void increaseScore() {
     score++;
+    scoreBloc.add(ScoreIncreamentEvent());
   }
 }
